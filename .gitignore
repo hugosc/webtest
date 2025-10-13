@@ -1,1 +1,82 @@
-/target
+# Trimmed .gitignore for a small Rust + Yew (WASM) project.
+# Focus: avoid committing Cargo/build artifacts, wasm/pkg outputs and common editor / OS files.
+
+# -----------------------
+# Rust / Cargo
+# -----------------------
+/target/
+**/target/
+# Cargo.lock: for applications it's recommended to commit Cargo.lock (keeps builds reproducible).
+# Keep it in repo, so do NOT ignore Cargo.lock.
+
+# Incremental compilation cache (optional)
+target/*/incremental
+
+# Cargo caches / local install roots
+/.cargo/
+.cargo/
+
+# Rust artifacts
+**/*.rlib
+**/*.rmeta
+
+# -----------------------
+# WASM / Yew build outputs
+# -----------------------
+# wasm-pack / wasm-bindgen / trunk / other tools often emit a `pkg/` or `dist/` directory
+/pkg/
+/dist/
+# generated wasm binaries (often in target or pkg)
+*.wasm
+
+# If you build with node tooling, avoid committing node_modules
+/node_modules/
+
+# -----------------------
+# Editor, OS, and tooling
+# -----------------------
+# IDEs
+.vscode/
+.idea/
+
+# Swap / backup files
+*~
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and temp
+*.log
+/tmp/
+/temp/
+
+# Environment files (may contain secrets)
+.env
+.env.*
+
+# Rust tooling
+.rustup/
+.rust-analyzer
+.rustfmt.toml
+.sccache/
+
+# Coverage / test artifacts
+coverage/
+**/*.profraw
+
+# Misc binaries and archives
+*.exe
+*.dll
+*.so
+*.dylib
+*.zip
+*.tar.gz
+
+# End of file
