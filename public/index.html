@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leptos - Learning HTML & Rust</title>
+    <title>Leptos Counter</title>
     <style>
       * {
         margin: 0;
@@ -12,7 +12,7 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: Arial, sans-serif;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         display: flex;
@@ -21,34 +21,22 @@
         padding: 20px;
       }
 
-      .app {
-        width: 100%;
-        max-width: 600px;
-      }
-
       .counter-container {
         background: white;
         border-radius: 12px;
         padding: 40px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        text-align: center;
       }
 
       h1 {
         color: #333;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-
-      h2 {
-        color: #667eea;
-        font-size: 18px;
-        margin-top: 30px;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        font-size: 2em;
       }
 
       p {
         color: #666;
-        text-align: center;
         margin-bottom: 20px;
         line-height: 1.6;
       }
@@ -57,8 +45,7 @@
         background: #f5f5f5;
         border-radius: 8px;
         padding: 20px;
-        text-align: center;
-        margin: 20px 0;
+        margin: 30px 0;
       }
 
       .count-value {
@@ -82,17 +69,14 @@
         border: none;
         border-radius: 6px;
         cursor: pointer;
-        transition: all 0.3s ease;
         color: white;
+        transition: all 0.3s ease;
+        min-width: 100px;
       }
 
       .btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      }
-
-      .btn:active {
-        transform: translateY(0);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       }
 
       .btn-increase {
@@ -123,12 +107,17 @@
         margin-top: 30px;
         padding-top: 20px;
         border-top: 1px solid #eee;
+        text-align: left;
+      }
+
+      .info h2 {
+        color: #667eea;
+        font-size: 18px;
+        margin-bottom: 15px;
       }
 
       .info ul {
         list-style: none;
-        margin-left: 0;
-        text-align: left;
       }
 
       .info li {
@@ -144,28 +133,21 @@
         font-family: "Courier New", monospace;
         color: #667eea;
       }
-
-      @media (max-width: 600px) {
-        .counter-container {
-          padding: 20px;
-        }
-
-        .count-value {
-          font-size: 36px;
-        }
-
-        .btn {
-          flex: 1;
-          min-width: 100px;
-        }
-      }
     </style>
   </head>
   <body>
-    <div id="app"></div>
     <script type="module">
-      import init from "../pkg/webtest.js";
-      init();
+      (async () => {
+        const timestamp = new Date().getTime();
+        const { default: init } = await import(`./pkg/webtest.js?t=${timestamp}`);
+        console.log("Loading WASM module...");
+        try {
+          await init();
+          console.log("WASM module loaded successfully!");
+        } catch (err) {
+          console.error("Failed to load WASM module:", err);
+        }
+      })();
     </script>
   </body>
 </html>

@@ -1,63 +1,46 @@
-use leptos::mount::mount_to_body;
 use leptos::prelude::*;
+use wasm_bindgen::prelude::*;
 
 #[component]
+// A component is a reusable piece of UI that includes logic. This one is a counter.
 fn Counter() -> impl IntoView {
-    // Create a signal for the counter state
-    // Signals are the foundation of Leptos reactivity
-    let (count, set_count) = signal(0);
+    let (count, set_count) = signal(32); // A signal is a reactive state variable. It holds the current count value.
 
-    // Event handlers using closures
-    let increment = move |_| set_count.update(|c| *c += 1);
+    let increment = move |_| set_count.update(|c| *c += 1); // move |_| creates a closure that captures set_count by value.
     let decrement = move |_| set_count.update(|c| *c -= 1);
     let reset = move |_| set_count.set(0);
+    let multiply_by_two = move |_| set_count.update(|c| *c *= 2);
+    // Divide the current count by two (integer division)
+    let divide_by_two = move |_| set_count.update(|c| *c /= 2);
 
     view! {
-        <div class="counter-container">
-            <h1>"Welcome to Leptos!"</h1>
-            <p>"This is a simple counter to get you started with Rust and HTML."</p>
-
-            <div class="counter-display">
-                <p>"Current count: " <span class="count-value">{count}</span></p>
-            </div>
-
-            <div class="button-group">
-                <button on:click=decrement class="btn btn-decrease">
-                    "-1"
-                </button>
-                <button on:click=increment class="btn btn-increase">
-                    "+1"
-                </button>
-                <button on:click=reset class="btn btn-reset">
-                    "Reset"
-                </button>
-            </div>
-
-            <div class="info">
-                <h2>"What's happening here?"</h2>
-                <ul>
-                    <li>"The " <code>"signal(0)"</code> " creates reactive state"</li>
-                    <li>"When you click a button, the counter updates"</li>
-                    <li>"Leptos automatically re-renders only what changed"</li>
-                    <li>"All of this is compiled from Rust to WebAssembly!"</li>
-                </ul>
+        <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+            <div style="padding: 20px; text-align: center; background: white; border-radius: 8px; max-width: 600px;">
+                <h1>"Counter"</h1>
+                <p>"Count: " <span style="font-size: 2em; font-weight: bold; color: #667eea;">{count}</span></p>
+                <div style="margin: 20px 0;">
+                    <button on:click=decrement style="padding: 10px 20px; margin: 5px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">"-1"</button>
+                    <button on:click=increment style="padding: 10px 20px; margin: 5px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer;">"+1"</button>
+                    <button on:click=reset style="padding: 10px 20px; margin: 5px; background: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer;">"Reset"</button>
+                    <button on:click=multiply_by_two style="padding: 10px 20px; margin: 5px; background: #ff9800; color: white; border: none; border-radius: 4px; cursor: pointer;">"×2"</button>
+                    <button on:click=divide_by_two style="padding: 10px 20px; margin: 5px; background: #9c27b0; color: white; border: none; border-radius: 4px; cursor: pointer;">"÷2"</button>
+                </div>
             </div>
         </div>
     }
 }
 
-/// Main App component
 #[component]
+// Even the 'main app' is a component. But in this component we simply call the other components like counter.
 fn App() -> impl IntoView {
     view! {
-        <div class="app">
-            <Counter />
-        </div>
+        <Counter />
     }
 }
 
-/// Entry point - mounts the app to the DOM
-#[wasm_bindgen::prelude::wasm_bindgen(start)]
+#[wasm_bindgen(start)]
+// The entry point for the WebAssembly module. This function is called when the module is loaded.
 pub fn main() {
-    mount_to_body(|| view! { <App /> })
+    use leptos::mount::mount_to_body;
+    mount_to_body(|| view! { <App /> }); // Mount the App component to the body of the HTML document.
 }
