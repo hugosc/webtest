@@ -137,17 +137,8 @@
   </head>
   <body>
     <script type="module">
-      (async () => {
-        const timestamp = new Date().getTime();
-        const { default: init } = await import(`./pkg/webtest.js?t=${timestamp}`);
-        console.log("Loading WASM module...");
-        try {
-          await init();
-          console.log("WASM module loaded successfully!");
-        } catch (err) {
-          console.error("Failed to load WASM module:", err);
-        }
-      })();
+      import init from "pkg/webtest.js";
+      init();
     </script>
   </body>
 </html>

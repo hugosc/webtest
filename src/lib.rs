@@ -19,11 +19,11 @@ fn Counter() -> impl IntoView {
                 <h1>"Counter"</h1>
                 <p>"Count: " <span style="font-size: 2em; font-weight: bold; color: #667eea;">{count}</span></p>
                 <div style="margin: 20px 0;">
-                    <button on:click=decrement style="padding: 10px 20px; margin: 5px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;">"-1"</button>
-                    <button on:click=increment style="padding: 10px 20px; margin: 5px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer;">"+1"</button>
-                    <button on:click=reset style="padding: 10px 20px; margin: 5px; background: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer;">"Reset"</button>
-                    <button on:click=multiply_by_two style="padding: 10px 20px; margin: 5px; background: #ff9800; color: white; border: none; border-radius: 4px; cursor: pointer;">"×2"</button>
-                    <button on:click=divide_by_two style="padding: 10px 20px; margin: 5px; background: #9c27b0; color: white; border: none; border-radius: 4px; cursor: pointer;">"÷2"</button>
+                <button on:click=decrement style="padding: 10px 20px; margin: 5px; background: #7f0000; color: #222; border: none; border-radius: 4px; cursor: pointer;">"-1"</button>
+                <button on:click=increment style="padding: 10px 20px; margin: 5px; background: #222; color: #7f0000; border: none; border-radius: 4px; cursor: pointer;">"+1"</button>
+                <button on:click=reset style="padding: 10px 20px; margin: 5px; background: #2d0036; color: #7f0000; border: none; border-radius: 4px; cursor: pointer;">"Reset"</button>
+                <button on:click=multiply_by_two style="padding: 10px 20px; margin: 5px; background: #3b003b; color: #7f0000; border: none; border-radius: 4px; cursor: pointer;">"×2"</button>
+                <button on:click=divide_by_two style="padding: 10px 20px; margin: 5px; background: #000; color: #7f0000; border: none; border-radius: 4px; cursor: pointer;">"÷2"</button>
                 </div>
             </div>
         </div>
