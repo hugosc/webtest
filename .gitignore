@@ -1,82 +1,114 @@
-# Trimmed .gitignore for a small Rust + Yew (WASM) project.
-# Focus: avoid committing Cargo/build artifacts, wasm/pkg outputs and common editor / OS files.
+# .gitignore for Rust + Leptos + Trunk WASM Project
 
 # -----------------------
 # Rust / Cargo
 # -----------------------
 /target/
 **/target/
-# Cargo.lock: for applications it's recommended to commit Cargo.lock (keeps builds reproducible).
-# Keep it in repo, so do NOT ignore Cargo.lock.
-
-# Incremental compilation cache (optional)
 target/*/incremental
-
-# Cargo caches / local install roots
-/.cargo/
-.cargo/
+Cargo.lock
 
 # Rust artifacts
 **/*.rlib
 **/*.rmeta
 
 # -----------------------
-# WASM / Yew build outputs
+# WASM / Trunk build outputs
 # -----------------------
-# wasm-pack / wasm-bindgen / trunk / other tools often emit a `pkg/` or `dist/` directory
-/pkg/
 /dist/
-# generated wasm binaries (often in target or pkg)
+/pkg/
 *.wasm
+*.wasm.d.ts
 
-# If you build with node tooling, avoid committing node_modules
+# Trunk cache and artifacts
+.trunk/
+trunk.log
+
+# -----------------------
+# Node modules (if using npm/yarn for tooling)
+# -----------------------
 /node_modules/
+package-lock.json
+yarn.lock
 
 # -----------------------
-# Editor, OS, and tooling
+# IDEs and Editors
 # -----------------------
-# IDEs
 .vscode/
 .idea/
+*.iml
+.sublime-project
+.sublime-workspace
+.DS_Store
+Thumbs.db
 
-# Swap / backup files
+# -----------------------
+# Editor swap/backup files
+# -----------------------
 *~
 *.swp
 *.swo
 *.swn
 *.bak
 *.tmp
+*.orig
 
-# macOS / Windows
+# -----------------------
+# OS files
+# -----------------------
 .DS_Store
+.AppleDouble
+.LSOverride
 Thumbs.db
 desktop.ini
+ehthumbs.db
 
-# Logs and temp
+# -----------------------
+# Logs and diagnostics
+# -----------------------
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# -----------------------
+# Environment and secrets
+# -----------------------
+.env
+.env.local
+.env.*.local
+
+# -----------------------
+# Temporary directories
+# -----------------------
 /tmp/
 /temp/
+/build/
 
-# Environment files (may contain secrets)
-.env
-.env.*
-
-# Rust tooling
-.rustup/
-.rust-analyzer
-.rustfmt.toml
-.sccache/
-
-# Coverage / test artifacts
-coverage/
-**/*.profraw
-
-# Misc binaries and archives
+# -----------------------
+# Misc build artifacts
+# -----------------------
 *.exe
 *.dll
 *.so
 *.dylib
 *.zip
 *.tar.gz
+a.out
 
-# End of file
+# -----------------------
+# Rust-specific tooling
+# -----------------------
+.rustup/
+.rust-analyzer
+.cargo/
+.sccache/
+
+# Coverage and profiling
+coverage/
+*.profraw
+*.profdata
+
+# AI agent configs and privacy
+AGENTS.md
+allat

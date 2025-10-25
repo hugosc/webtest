@@ -13,45 +13,44 @@
 
       body {
         font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
       }
 
       .counter-container {
-        background: white;
+        background: #18141a;
         border-radius: 12px;
         padding: 40px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 40px rgba(139, 0, 0, 0.4);
         text-align: center;
+        border: 2px solid #8b0000;
       }
 
       h1 {
-        color: #333;
+        color: #ff1744;
         margin-bottom: 20px;
         font-size: 2em;
+        text-shadow: 0 2px 8px #8b0000;
+        letter-spacing: 2px;
       }
 
       p {
-        color: #666;
+        color: #e57373;
         margin-bottom: 20px;
         line-height: 1.6;
       }
 
       .counter-display {
-        background: #f5f5f5;
+        background: #2d232b;
         border-radius: 8px;
         padding: 20px;
         margin: 30px 0;
+        border: 1.5px solid #8b0000;
       }
 
       .count-value {
         font-size: 48px;
-        color: #667eea;
+        color: #ff1744;
         font-weight: bold;
+        text-shadow: 0 2px 8px #8b0000;
       }
 
       .button-group {
@@ -69,51 +68,64 @@
         border: none;
         border-radius: 6px;
         cursor: pointer;
-        color: white;
+        color: #fff;
         transition: all 0.3s ease;
         min-width: 100px;
+        box-shadow: 0 2px 8px #1a0000;
+        outline: 2px solid #2d232b;
       }
 
       .btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow:
+          0 10px 30px #8b0000,
+          0 2px 8px #000;
+        filter: brightness(1.2);
       }
 
       .btn-increase {
-        background-color: #4caf50;
+        background: linear-gradient(90deg, #b71c1c 0%, #8b0000 100%);
+        border-bottom: 3px solid #ff1744;
       }
 
       .btn-increase:hover {
-        background-color: #45a049;
+        background: linear-gradient(90deg, #ff1744 0%, #b71c1c 100%);
+        border-bottom: 3px solid #fff;
       }
 
       .btn-decrease {
-        background-color: #f44336;
+        background: linear-gradient(90deg, #370617 0%, #8b0000 100%);
+        border-bottom: 3px solid #ff1744;
       }
 
       .btn-decrease:hover {
-        background-color: #da190b;
+        background: linear-gradient(90deg, #8b0000 0%, #370617 100%);
+        border-bottom: 3px solid #fff;
       }
 
       .btn-reset {
-        background-color: #2196f3;
+        background: linear-gradient(90deg, #232323 0%, #8b0000 100%);
+        border-bottom: 3px solid #ff1744;
       }
 
       .btn-reset:hover {
-        background-color: #0b7dda;
+        background: linear-gradient(90deg, #8b0000 0%, #232323 100%);
+        border-bottom: 3px solid #fff;
       }
 
       .info {
         margin-top: 30px;
         padding-top: 20px;
-        border-top: 1px solid #eee;
+        border-top: 1px solid #8b0000;
         text-align: left;
+        color: #e57373;
       }
 
       .info h2 {
-        color: #667eea;
+        color: #ff1744;
         font-size: 18px;
         margin-bottom: 15px;
+        text-shadow: 0 2px 8px #8b0000;
       }
 
       .info ul {
@@ -121,17 +133,17 @@
       }
 
       .info li {
-        color: #555;
+        color: #e57373;
         margin-bottom: 10px;
         line-height: 1.6;
       }
 
       code {
-        background-color: #f5f5f5;
+        background-color: #2d232b;
         padding: 2px 6px;
         border-radius: 3px;
         font-family: "Courier New", monospace;
-        color: #667eea;
+        color: #ff1744;
       }
     </style>
   </head>
