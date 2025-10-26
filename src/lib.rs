@@ -695,7 +695,8 @@ fn App() -> impl IntoView {
 /// LEARNING: This is how you connect Rust code to the browser.
 ///           The Rust compiles to WASM, the WASM runs in the browser,
 ///           and Leptos renders your components to actual DOM elements.
-#[wasm_bindgen(start)]
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen(start))]
+#[cfg(target_arch = "wasm32")]
 pub fn main() {
     use leptos::mount::mount_to_body;
 
