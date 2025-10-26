@@ -1,18 +1,3 @@
 [build]
 target = "index.html"
 dist = "dist"
-
-[build.release]
-# Enable wasm-opt for production builds - significantly reduces WASM size
-wasm-opt = ["-O4"]
-
-[watch]
-# Watch these directories for changes and trigger rebuilds
-ignore = ["target"]
-
-[profile.release]
-# Optimize for size and speed
-opt-level = "z"     # Optimize for size
-lto = true          # Link-time optimization
-codegen-units = 1   # Better optimization but slower compile
-strip = true        # Strip symbols
