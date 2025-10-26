@@ -21,6 +21,9 @@ jobs:
 
       - uses: Swatinem/rust-cache@v2
 
+      - name: Disable sccache wrapper
+        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
+
       - name: Install Trunk
         run: cargo install trunk --locked
 
@@ -39,6 +42,9 @@ jobs:
 
       - uses: Swatinem/rust-cache@v2
 
+      - name: Disable sccache wrapper
+        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
+
       - name: Test (native)
         run: cargo test --verbose
 
@@ -52,6 +58,9 @@ jobs:
           targets: wasm32-unknown-unknown
 
       - uses: Swatinem/rust-cache@v2
+
+      - name: Disable sccache wrapper
+        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
 
       - name: Install wasm-pack
         run: cargo install wasm-pack --locked
