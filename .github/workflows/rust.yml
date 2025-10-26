@@ -15,6 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Unset sccache wrapper
+        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
+
       - name: Install Rust stable
         run: |
           rustup update stable
