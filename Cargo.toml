@@ -17,5 +17,8 @@ lto = true
 codegen-units = 1
 strip = true
 
+[profile.dev]
+opt-level = 0
+
 [package.metadata.wasm-pack.profile.release]
 wasm-opt = false

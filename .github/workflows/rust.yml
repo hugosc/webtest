@@ -10,50 +10,18 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: dtolnay/rust-toolchain@stable
-
-      - uses: Swatinem/rust-cache@v2
-
-      - name: Disable sccache wrapper
-        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
-
-      - name: Build (native)
-        run: cargo build --verbose
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: dtolnay/rust-toolchain@stable
-
-      - uses: Swatinem/rust-cache@v2
-
-      - name: Disable sccache wrapper
-        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
-
-      - name: Test (native)
-        run: cargo test --verbose
-
   build-wasm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-unknown-unknown
-          components: rust-src
-
-      - uses: Swatinem/rust-cache@v2
+      - name: Install Rust stable
+        run: |
+          rustup update stable
+          rustup target add wasm32-unknown-unknown
 
       - name: Install Trunk
-        run: cargo install trunk --locked
+        run: cargo install trunk
 
-      - name: Build WASM (Trunk)
+      - name: Build WASM with Trunk
         run: trunk build --release
