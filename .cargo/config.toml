@@ -1,0 +1,14 @@
+[build]
+target = "wasm32-unknown-unknown"
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+rustc-wrapper = "sccache"
+
+[profile.dev]
+opt-level = 0
+debug = true
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
