@@ -15,20 +15,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install sccache
-        run: cargo install sccache
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - uses: Swatinem/rust-cache@v2
 
       - name: Install Trunk
-        run: cargo install trunk
-
-      - name: Add wasm32 target
-        run: rustup target add wasm32-unknown-unknown
+        run: cargo install trunk --locked
 
       - name: Build (native)
         run: cargo build --verbose
 
+      - name: Build WASM (Trunk)
+        run: trunk build --release
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+
       - name: Test (native)
         run: cargo test --verbose
 
-      - name: Build WASM (Trunk)
-        run: trunk build --release
+  test-wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Install wasm-pack
+        run: cargo install wasm-pack --locked
+
+      - name: Install Chrome
+        run: sudo apt-get update && sudo apt-get install -y chromium-browser
+
+      - name: Test WASM (headless)
+        run: wasm-pack test --headless --chrome

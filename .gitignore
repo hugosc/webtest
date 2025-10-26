@@ -112,3 +112,4 @@ coverage/
 # AI agent configs and privacy
 AGENTS.md
 allat
+.zed/settings.json
