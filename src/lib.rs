@@ -49,16 +49,6 @@ mod theme {
     pub const TEXT_MUTED: &str = "#e57373";
 }
 
-#[cfg(all(test, target_arch = "wasm32"))]
-mod wasm_tests {
-    use wasm_bindgen_test::*;
-
-    #[wasm_bindgen_test]
-    fn minimal_wasm_test() {
-        assert_eq!(2 + 2, 4);
-    }
-}
-
 // ============================================================================
 // SECTION 2: LAYOUT COMPONENTS
 // ============================================================================
