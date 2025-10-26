@@ -49,10 +49,9 @@ mod theme {
     pub const TEXT_MUTED: &str = "#e57373";
 }
 
-#[cfg(target_arch = "wasm32")]
-#[allow(unused_imports)]
+#[cfg(all(test, target_arch = "wasm32"))]
 mod wasm_tests {
-    use wasm_bindgen_test::wasm_bindgen_test;
+    use wasm_bindgen_test::*;
 
     #[wasm_bindgen_test]
     fn minimal_wasm_test() {
@@ -706,8 +705,9 @@ fn App() -> impl IntoView {
 /// LEARNING: This is how you connect Rust code to the browser.
 ///           The Rust compiles to WASM, the WASM runs in the browser,
 ///           and Leptos renders your components to actual DOM elements.
-#[cfg_attr(target_arch = "wasm32", wasm_bindgen(start))]
-#[cfg(target_arch = "wasm32")]
+/// - pub fn main() is called, which mounts the app
+/// - Leptos takes over, rendering the app and managing updates
+#[wasm_bindgen(start)]
 pub fn main() {
     use leptos::mount::mount_to_body;
 
