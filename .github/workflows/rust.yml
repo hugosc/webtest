@@ -52,9 +52,6 @@ jobs:
 
       - uses: Swatinem/rust-cache@v2
 
-      - name: Disable sccache wrapper
-        run: echo "RUSTC_WRAPPER=" >> $GITHUB_ENV
-
       - name: Install Trunk
         run: cargo install trunk --locked
 
