@@ -4,9 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-leptos = { version = "0.7", features = ["csr"] }
+leptos = { version = "0.8", features = ["csr"], default-features = false }
 wasm-bindgen = "0.2"
-web-sys = { version = "0.3", features = ["Document", "Window", "HtmlElement"] }
+web-sys = { version = "0.3", features = ["Document", "Window", "HtmlElement"], default-features = false }
 
 [lib]
 crate-type = ["cdylib"]
@@ -18,7 +18,16 @@ codegen-units = 1
 strip = true
 
 [profile.dev]
-opt-level = 0
+opt-level = 1
+debug = true
+incremental = true
+codegen-units = 256
 
 [package.metadata.wasm-pack.profile.release]
-wasm-opt = false
+wasm-opt = ['-Os']
+
+[alias]
+# Fast development build without release optimizations
+dev = "build --target wasm32-unknown-unknown"
+# Quick check for compilation errors
+check-wasm = "check --target wasm32-unknown-unknown"
